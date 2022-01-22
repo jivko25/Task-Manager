@@ -1,0 +1,24 @@
+@use '../../styles/colors.scss';
+
+.wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button{
+    padding: 15px 32px;
+    background-color: colors.$task_color;
+    border-radius: 1rem;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+}
+
+.button:hover{
+    background-color: colors.$task_color_hover;
+    color: #999999;
+}
+

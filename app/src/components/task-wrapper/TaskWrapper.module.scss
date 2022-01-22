@@ -1,0 +1,46 @@
+@use '../../styles/colors.scss';
+
+.wrapper{
+    background-color: white;
+    min-height: 80vh;
+    height: 100%;
+    min-width: 300px;
+    max-width: 300px;
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.title-todo{
+    background-color: colors.$todo_color;
+    color: white;
+    text-align: center;
+    border-radius: 1rem 1rem 0 0;   
+    margin-top: -21px;  
+}
+
+.title-progress{
+    background-color: colors.$progress_color;
+    color: white;
+    text-align: center;
+    border-radius: 1rem 1rem 0 0;   
+    margin-top: -21px;  
+}
+
+.title-done{
+    background-color: colors.$done_color;
+    color: white;
+    text-align: center;
+    border-radius: 1rem 1rem 0 0;   
+    margin-top: -21px;  
+}
+
+.content{
+    padding: 0px 20px 0px 20px;
+}
+
+@media (max-width: 1000px){
+    .wrapper{
+        margin: auto;
+        margin-bottom: 100px;
+    }
+}

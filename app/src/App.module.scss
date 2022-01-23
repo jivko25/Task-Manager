@@ -6,6 +6,15 @@
     padding: 50px;
 }
 
+.wrapper-blur{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 50px;
+    filter: blur(4px)
+}
+
+
 @media (max-width: 1000px){
     .wrapper{
         display: block;

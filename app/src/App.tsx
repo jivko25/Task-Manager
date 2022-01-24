@@ -5,12 +5,20 @@ import { Button } from './components/button/Button';
 import { TaskWrapper } from './components/task-wrapper/TaskWrapper';
 import { NewTaskModal } from './components/new-task/NewTaskModal';
 import { EditTaskModal } from './components/edit-task/EditTaskModal';
+import { useStore } from './components/common/StoreContext';
 
 function App() {
   const [onOpenCreate, setOnOpenCreate] = useState(false);
   const [onOpenEdit, setOnOpenEdit] = useState(false);
-  const test = <h1>testove</h1>
-  // const actions = <Button onNewTask={() => {setOnOpenCreate(false);}} title={'Add task'}/>
+  const store = useStore();
+  // store.addTask('title', 'description', 'test')
+  // store.addTask('title2', 'description2', 'test2')
+  console.log(store.tasks.forEach((element: any) => {
+    let item = JSON.parse(JSON.stringify(element))
+    console.log(item.id);
+    
+  }));
+  
   const users = ['Ivan', 'Georgi', 'Peter']
   return (
     <div>

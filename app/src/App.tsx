@@ -15,7 +15,7 @@ function App() {
   // store.addTask('title2', 'description2', 'test2')
   console.log(store.tasks.forEach((element: any) => {
     let item = JSON.parse(JSON.stringify(element))
-    console.log(item.id);
+    console.log(item);
     
   }));
   
@@ -30,7 +30,7 @@ function App() {
       </div>
       <div className={styles.modal}>
         {onOpenCreate &&
-          <NewTaskModal onAddTask={() => {console.log('add');}}
+          <NewTaskModal onAddTask={(title : string, description : string, assignee : string ) => {store.addTask(title, description, assignee)}}
           onClose={() => {setOnOpenCreate(false)}}
           users={users}
           />

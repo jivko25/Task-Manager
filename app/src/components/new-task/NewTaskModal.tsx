@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "../button/Button";
 import { Modal } from "../modal/Modal";
 import styles from './NewTaskModal.module.scss'
@@ -10,22 +11,33 @@ interface Props{
 }
 
 export const NewTaskModal : React.FC<Props> = ({onAddTask, onClose, users}) => {
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [assignee, setAssignee] = useState('');
+
     const content = 
     <div className={styles['content-wrapper']}>
         <div className={styles['content-row']}>
             <h3>Title:</h3>
-            <input type="text"/>
+            <input type="text" onChange={(e) => {
+                setTitle(e.target.value);
+            }}/>
         </div>
         <div className={styles['content-row']}>
             <h3>Description:</h3>
-            <textarea/>
+            <textarea onChange={(e) => {
+                setDescription(e.target.value);
+                
+            }}/>
         </div>
         <div className={styles['content-row']}>
             <h3>Assignee:</h3>
-            <select>
+            <select onChange={(e) => {
+                setAssignee(e.target.value)
+            }}>
                 {users.map(user => {
                     return(
-                        <option value={user}>{user}</option>
+                        <option value={user} key={user}>{user}</option>
                     )
                 })}
             </select>

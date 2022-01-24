@@ -24,14 +24,15 @@
 }
 
 .content{
-    height: 70%;
-    padding: 15px;
+    max-height: 45%;
+    height: 100%;
+    padding: 30px;
 }
 
 .actions{
     display: flex;
     justify-content: space-around;
-    padding: 5px;
+    padding: 15px;
     button{
         padding: 15px 32px;
         background-color: colors.$task_color;

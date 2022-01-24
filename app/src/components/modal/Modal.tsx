@@ -6,10 +6,9 @@ interface Props{
     title : string
     content : React.ReactNode
     actions : React.ReactNode
-    isOpen: boolean
 }
 
-export const Modal : React.FC<Props> = ({title, content, actions, isOpen}) => {
+export const Modal : React.FC<Props> = ({title, content, actions}) => {
     return (
     <div className={styles.wrapper}>
         <div className={styles.header}>

@@ -3,15 +3,15 @@ import styles from './Button.module.scss'
 
 
 interface Props {
-    onNewTask : Function
+    onAction : Function
     title : string
 }
 
-export const Button: React.FC<Props> = ({onNewTask, title}) => {
+export const Button: React.FC<Props> = ({onAction, title}) => {
     
     return (
         <div className={styles.wrapper}>
-            <button className={styles.button} onClick={() => {onNewTask()}}>{title}</button>
+            <button className={styles.button} onClick={() => {onAction()}}>{title}</button>
         </div>
     )
 }

@@ -6,7 +6,9 @@ import styles from './EditTaskModal.module.scss'
 
 
 interface Props{
+    id : string
     onClose : Function,
+    onError : Function,
     users : Array<string>,
     titleValue : string,
     descriptionValue : string,
@@ -15,7 +17,7 @@ interface Props{
 }
 
 
-export const EditTaskModal : React.FC<Props> = ({onClose, users, titleValue, descriptionValue, assigneeValue, statusValue}) => {    
+export const EditTaskModal : React.FC<Props> = ({id, onClose, onError, users, titleValue, descriptionValue, assigneeValue, statusValue}) => {    
     
     const [title, setTitle] = useState(titleValue);
     const [description, setDescription] = useState(descriptionValue);
@@ -24,18 +26,29 @@ export const EditTaskModal : React.FC<Props> = ({onClose, users, titleValue, des
 
     const store = useStore();
 
-    const task = JSON.parse(JSON.stringify(store.findTaskByTitle(titleValue)));
+    const task = JSON.parse(JSON.stringify(store.findTaskById(id)));
     
     let newTask = task[0];
     useEffect(() => {
             newTask = {
                 id : task[0].id,
-                title : title,
-                description : description,
+                title : title.trim(),
+                description : description.trim(),
                 assignee : assignee,
                 status : status
             }
     }, [title, description, assignee, status])
+
+    const onSubmit = () => {
+        if (Object.values(newTask).indexOf('') === -1){
+            store.editTask(task[0], newTask);
+            onClose();
+        }
+        else{
+            onError('All fields are required!');
+            onClose();
+        }
+    }
 
     const content = 
     <div className={styles['content-wrapper']}>
@@ -78,7 +91,7 @@ export const EditTaskModal : React.FC<Props> = ({onClose, users, titleValue, des
 
     const actions = <div className={styles.buttons}>
         <Button onAction={() => {onClose()}} title={'Close'}/>
-        <Button onAction={() => {store.editTask(task[0], newTask);onClose()}} title={'Edit'}/>
+        <Button onAction={() => {onSubmit()}} title={'Edit'}/>
     </div>
     return(
         <div>

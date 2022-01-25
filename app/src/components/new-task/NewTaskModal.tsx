@@ -7,13 +7,25 @@ import styles from './NewTaskModal.module.scss'
 interface Props{
     onAddTask : Function,
     onClose : Function,
+    onError : Function,
     users : Array<string>
 }
 
-export const NewTaskModal : React.FC<Props> = ({onAddTask, onClose, users}) => {
+export const NewTaskModal : React.FC<Props> = ({onError, onAddTask, onClose, users}) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [assignee, setAssignee] = useState('');
+
+    const onSubmit = () => {
+        if (title.trim() !== '' && description.trim() !== '' && assignee.trim() !== ''){
+            onAddTask(title, description, assignee);
+            onClose();
+        }
+        else{
+            onError('All fields are required!');
+            onClose();
+        }
+    }
 
     const content = 
     <div className={styles['content-wrapper']}>
@@ -49,7 +61,7 @@ export const NewTaskModal : React.FC<Props> = ({onAddTask, onClose, users}) => {
 
     const actions = <div className={styles.buttons}>
         <Button onAction={() => {onClose()}} title={'Close'}/>
-        <Button onAction={() => {onAddTask(title, description, assignee);onClose()}} title={'Add'}/>
+        <Button onAction={() => {onSubmit()}} title={'Add'}/>
     </div>
     return(
         <div>

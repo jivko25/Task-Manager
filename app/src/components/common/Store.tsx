@@ -12,9 +12,9 @@ export function Store(){
             }
             this.tasks.push(task);
         },
-        findTaskByTitle(title : string){
+        findTaskById(id : string){
             const copy = this.tasks.slice()
-            return copy.filter((item :any) => item.title == title)
+            return copy.filter((item :any) => item.id == id)
         },
         editTask(task : any, newTask : any){
             console.log(newTask);

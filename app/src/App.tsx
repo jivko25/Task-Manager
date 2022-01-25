@@ -29,8 +29,8 @@ function App() {
   useEffect(() => {
     const data = JSON.parse(JSON.stringify(store.tasks));
     
-      const content = userFilterValue !== '' ? data.filter((item : any) => item.assignee === userFilterValue) : data;
-    console.log(content);
+    const content = userFilterValue !== '' ? data.filter((item : any) => item.assignee === userFilterValue) : data;
+
     const toDo = content.filter((item: any) => item.status === 'To Do');
     const progress = content.filter((item: any) => item.status === 'In Progress');
     const done = content.filter((item: any) => item.status === 'Done');

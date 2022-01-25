@@ -46,8 +46,6 @@ export const NewTaskModal : React.FC<Props> = ({onError, onAddTask, onClose, use
             <h3>Assignee:</h3>
             <select onChange={(e) => {
                 setAssignee(e.target.value)
-                console.log(assignee);
-                
             }}>
                 <option value={''} key={'nothing'}></option>
                 {users.map(user => {

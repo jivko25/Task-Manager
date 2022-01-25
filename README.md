@@ -14,7 +14,7 @@ Simple **Task manager** using **React**, **TypeScript**, **SASS**, **MobX**
 * 3 columns - **To Do**, **In Progress** and **Done**
 * **Add task**
 * **Edit task**
-* Change **state** of the task. Only folowing variants are possible:
+* Change the **state** of the task. Only the following variants are permitted:
 
   * From To Do to In Progress
   * From In Progress to To Do

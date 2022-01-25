@@ -49,7 +49,7 @@ export const NewTaskModal : React.FC<Props> = ({onAddTask, onClose, users}) => {
 
     const actions = <div className={styles.buttons}>
         <Button onAction={() => {onClose()}} title={'Close'}/>
-        <Button onAction={() => {onAddTask(title, description, assignee)}} title={'Add'}/>
+        <Button onAction={() => {onAddTask(title, description, assignee);onClose()}} title={'Add'}/>
     </div>
     return(
         <div>

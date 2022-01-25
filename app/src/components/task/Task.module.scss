@@ -1,0 +1,31 @@
+@use '../../styles/colors.scss';
+
+.wrapper{
+    position: relative;
+    background-color: colors.$task_color;
+    margin: 10px;
+    max-height: 150px;
+    height: 100%;
+    text-align: center;
+    color: white;
+    border-radius: 1rem;
+    line-height: 15px;
+    padding: 1px;
+}
+
+.wrapper:hover{
+    cursor: pointer;
+}
+
+.leftArrow{
+    position: absolute;
+    top: 30px;
+}
+
+
+.rightArrow{
+    position: absolute;
+    top: 30px;
+    left : 87%;
+}
+

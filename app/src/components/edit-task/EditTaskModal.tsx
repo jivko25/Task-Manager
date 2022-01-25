@@ -6,36 +6,36 @@ import styles from './EditTaskModal.module.scss'
 
 
 interface Props{
-    onAddTask : Function,
-    onEdit : Function,
     onClose : Function,
     users : Array<string>,
     titleValue : string,
     descriptionValue : string,
-    assigneeValue : string
+    assigneeValue : string,
+    statusValue : string
 }
 
 
-export const EditTaskModal : React.FC<Props> = ({onEdit, onClose, users, titleValue, descriptionValue, assigneeValue}) => {    
+export const EditTaskModal : React.FC<Props> = ({onClose, users, titleValue, descriptionValue, assigneeValue, statusValue}) => {    
     
     const [title, setTitle] = useState(titleValue);
     const [description, setDescription] = useState(descriptionValue);
     const [assignee, setAssignee] = useState(assigneeValue);
+    const [status, setStatus] = useState(statusValue)
 
     const store = useStore();
 
     const task = JSON.parse(JSON.stringify(store.findTaskByTitle(titleValue)));
     
-    let newTask = {};
+    let newTask = task[0];
     useEffect(() => {
-        newTask = {
-            id : task[0].id,
-            title : title,
-            description : description,
-            assignee : assignee,
-            status : task[0].status,
-        }
-    }, [title, description, assignee])
+            newTask = {
+                id : task[0].id,
+                title : title,
+                description : description,
+                assignee : assignee,
+                status : status
+            }
+    }, [title, description, assignee, status])
 
     const content = 
     <div className={styles['content-wrapper']}>
@@ -64,11 +64,21 @@ export const EditTaskModal : React.FC<Props> = ({onEdit, onClose, users, titleVa
                 })}
             </select>
         </div>
+        <div className={styles['content-row']}>
+            <h3>Status:</h3>
+            <select onChange={(e) => {
+                setStatus(e.target.value)
+            }} value={status}>
+                <option value={'To Do'} key={'To Do'} disabled={statusValue == 'Done'}>{'To Do'}</option>
+                <option value={'In Progress'} key={'In Progress'} disabled={statusValue == 'Done'}>{'In Progress'}</option>
+                <option value={'Done'} key={'Done'} disabled={statusValue == 'To Do'}>{'Done'}</option>
+            </select>
+        </div>
     </div>;
 
     const actions = <div className={styles.buttons}>
         <Button onAction={() => {onClose()}} title={'Close'}/>
-        <Button onAction={() => {store.editTask(task[0], newTask);console.log(store.tasks);onClose()}} title={'Edit'}/>
+        <Button onAction={() => {store.editTask(task[0], newTask);onClose()}} title={'Edit'}/>
     </div>
     return(
         <div>

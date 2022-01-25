@@ -6,7 +6,6 @@ import { TaskWrapper } from './components/task-wrapper/TaskWrapper';
 import { NewTaskModal } from './components/new-task/NewTaskModal';
 import { EditTaskModal } from './components/edit-task/EditTaskModal';
 import { useStore } from './components/common/StoreContext';
-import { Task } from './components/task/Task';
 
 function App() {
   const [onOpenCreate, setOnOpenCreate] = useState(false);
@@ -25,7 +24,6 @@ function App() {
     const toDo = content.filter((item: any) => item.status === 'To Do');
     const progress = content.filter((item: any) => item.status === 'In Progress');
     const done = content.filter((item: any) => item.status === 'Done');
-    
     
     setToDos(toDo);
     setInProgress(progress);
@@ -52,13 +50,13 @@ function App() {
           />
         }
         {onOpenEdit &&
-        <EditTaskModal onAddTask={() => {console.log('add');}}
+        <EditTaskModal
           onClose={() => {setOnOpenEdit(false)}}
-          onEdit={(newTask : any) => {store.editTask(taskForEdit, newTask);setOnOpenEdit(false)}}
           users={users}
           titleValue={store.edit.title}
           descriptionValue={store.edit.description}
           assigneeValue={store.edit.assignee}
+          statusValue={store.edit.status}
           />
         }
       </div>

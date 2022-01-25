@@ -17,6 +17,7 @@ export function Store(){
             return copy.filter((item :any) => item.title == title)
         },
         editTask(task : any, newTask : any){
+            console.log(newTask);
             
             this.tasks.splice(Number(task.id.split('-')[1]) - 1, 1, newTask)
             console.log(JSON.stringify(this.tasks));

@@ -4,11 +4,12 @@
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+    margin-bottom: 30px;
 }
 .content-wrapper{
     display: flex;
     flex-direction: column;
-    gap : 20px;
+    gap : 15px;
 }
 
 .content-row{

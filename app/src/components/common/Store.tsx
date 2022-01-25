@@ -2,6 +2,7 @@ export function Store(){
     return{
         tasks: [] as any,
         edit: {} as any,
+        users: ['Ivan', 'Peter', 'Georgi', 'Maria'],
         addTask(title : string, description : string, assignee : string){
             const task = {
                 id : `DOC-${this.tasks.length + 1}`,

@@ -19,6 +19,8 @@ function App() {
   const [inProgress, setInProgress] = useState([] as Array<Object>);
   const [done, setDone] = useState([] as Array<Object>);
 
+  const [users, setUsers] = useState([] as Array<string>);
+
 
   const store = useStore();
 
@@ -28,6 +30,7 @@ function App() {
     const progress = content.filter((item: any) => item.status === 'In Progress');
     const done = content.filter((item: any) => item.status === 'Done');
     
+    setUsers(JSON.parse(JSON.stringify(store.users)))
     setToDos(toDo);
     setInProgress(progress);
     setDone(done);
@@ -42,9 +45,6 @@ function App() {
     }, 3000);
   }
 
-
-  
-  const users = ['Ivan', 'Georgi', 'Peter']
   return (
     <div>
       <div className={!onOpenCreate && !onOpenEdit ? styles.wrapper : styles['wrapper-blur']}>

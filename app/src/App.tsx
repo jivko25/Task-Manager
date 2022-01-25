@@ -7,6 +7,7 @@ import { NewTaskModal } from './components/new-task/NewTaskModal';
 import { EditTaskModal } from './components/edit-task/EditTaskModal';
 import { useStore } from './components/common/StoreContext';
 import { Error } from './components/error/Error';
+import { Filter } from './components/filter/Filter';
 
 function App() {
   const [onOpenCreate, setOnOpenCreate] = useState(false);
@@ -20,12 +21,16 @@ function App() {
   const [done, setDone] = useState([] as Array<Object>);
 
   const [users, setUsers] = useState([] as Array<string>);
+  const [userFilterValue, setUserFilterValue] = useState('');
 
 
   const store = useStore();
 
   useEffect(() => {
-    const content = JSON.parse(JSON.stringify(store.tasks));
+    const data = JSON.parse(JSON.stringify(store.tasks));
+    
+      const content = userFilterValue !== '' ? data.filter((item : any) => item.assignee === userFilterValue) : data;
+    console.log(content);
     const toDo = content.filter((item: any) => item.status === 'To Do');
     const progress = content.filter((item: any) => item.status === 'In Progress');
     const done = content.filter((item: any) => item.status === 'Done');
@@ -35,7 +40,7 @@ function App() {
     setInProgress(progress);
     setDone(done);
     
-  }, [onOpenCreate, onOpenEdit])
+  }, [onOpenCreate, onOpenEdit, userFilterValue])
 
   const handleError = (message : string) => {
     setOnOpenError(true);
@@ -51,7 +56,10 @@ function App() {
           <TaskWrapper title={"To Do"} content={toDos} onEdit={() => {setOnOpenEdit(true)}}/>
           <TaskWrapper title={"In progress"} content={inProgress} onEdit={() => {setOnOpenEdit(true)}}/>
           <TaskWrapper title={"Done"} content={done} onEdit={() => {setOnOpenEdit(true)}}/>
-          <Button onAction={() => {setOnOpenCreate(true);}} title={'New task'}/>
+          <div className={styles.buttons}>
+            <Button onAction={() => {setOnOpenCreate(true)}} title={'New task'}/>
+            <Filter values={users} setValue={(value : string) => {setUserFilterValue(value)}}/>
+          </div>
       </div>
       <div className={styles.modal}>
         {onOpenCreate &&

@@ -1,11 +1,6 @@
 @use '../../styles/colors.scss';
 
-.wrapper{
-    display: flex;
-    justify-content: center;
-}
-
-.button{
+.filter{
     padding: 15px 32px;
     background-color: colors.$task_color;
     border-radius: 1rem;
@@ -15,8 +10,6 @@
     color: white;
 }
 
-.button:hover{
-    background-color: colors.$task_color_hover;
-    color: #999999;
+option{
+    text-align: center;
 }
-
